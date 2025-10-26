@@ -6,4 +6,4 @@ It is in two parts:
 An introduction to the use of MDTraj for the analysis of simulations. The data comes from the associated 'protein simulation with amber and openmm' workshop.
 
 2. EQUILIBRATION
-An introduction to a key issue in MD simulation: testing for equilibration, samopling, and convergence. The data here comes from a long simulation of a different protein, chignolin.
+An introduction to a key issue in MD simulation: testing for equilibration, sampling, and convergence. The data here comes from a long simulation of a different protein, chignolin.
