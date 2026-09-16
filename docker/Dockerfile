@@ -9,8 +9,10 @@ USER $NB_USER
 WORKDIR $HOME
 
 # Install workshop deps
-RUN mamba install -c conda-forge matplotlib -y
-RUN pip install mdtraj 
+RUN conda install -y -c conda-forge \
+    conda-forge::matplotlib=3.11.1
+RUN pip install --no-cache-dir \
+    mdtraj==1.11.1.post2
 
 # Get workshop files and move them to jovyan directory.
 COPY --chown=1000:100 . .
