@@ -43,6 +43,7 @@ forward this port when deploying locally::
 Workshop Content Authors:
 
 - Charlie Laughton
+- Sarah Fegan
 
 ## Contact
 
