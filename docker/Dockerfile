@@ -13,8 +13,7 @@ RUN conda install -y -c conda-forge \
     conda-forge::matplotlib=3.11.2 \
     conda-forge::nglview=4.0.1
 RUN pip install --no-cache-dir \
-    mdtraj==1.11.1.post2 \
-    mdplus==0.1.2
+    mdtraj==1.11.1.post2
 
 COPY docker/fix-nglview.sh /tmp/fix-nglview.sh
 RUN bash /tmp/fix-nglview.sh
