@@ -24,7 +24,7 @@ jobs:
           sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL
           sudo docker image prune --all --force
           sudo docker builder prune -a
-      
+
       - name: checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
@@ -47,11 +47,11 @@ jobs:
 
       - name: Set up Docker Buildx
         id: buildx
-        uses: docker/setup-buildx-action@f87e5991a6d7451dcb8d9637bfbc97413f497069 # v4.4.1
+        uses: docker/setup-buildx-action@37fe631027851001ddb9b187196cc803df7f5f0e # v4.3.0
 
       - name: Build and push by digest
         if: github.event_name == 'pull_request'
-        uses: docker/build-push-action@c3c9e263c25d99ce0380d002d59b67737d91b0dc # v7.4.0
+        uses: docker/build-push-action@53b7df96c91f9c12dcc8a07bcb9ccacbed38856a # v7.3.0
         with:
           file: ./docker/Dockerfile
           platforms: ${{ matrix.platform }}
@@ -65,7 +65,7 @@ jobs:
         run: |
           docker run -t ghcr.io/${{ vars.ORG_REPO }}/${{ github.event.repository.name }}:latest bash -c " \
             pip install pytest nbmake; \
-            find . -name '*.ipynb' | pytest --nbmake --nbmake-timeout=3600; "
+            find . -name '*.ipynb' | pytest --nbmake --nbmake-timeout=3600;"
 
       - name: Authenticate with GHCR
         if: github.event_name != 'pull_request'
@@ -79,7 +79,7 @@ jobs:
       - name: Build and push by digest
         if: github.event_name != 'pull_request'
         id: build
-        uses: docker/build-push-action@c3c9e263c25d99ce0380d002d59b67737d91b0dc # v7.4.0
+        uses: docker/build-push-action@53b7df96c91f9c12dcc8a07bcb9ccacbed38856a # v7.3.0
         with:
           file: ./docker/Dockerfile
           platforms: ${{ matrix.platform }}
@@ -93,7 +93,7 @@ jobs:
         run: |
           docker run -t ghcr.io/${{ vars.ORG_REPO }}/${{ github.event.repository.name }}@${{ steps.build.outputs.digest }} bash -c " \
             pip install pytest nbmake; \
-            find . -name '*.ipynb' | pytest --nbmake --nbmake-timeout=3600; "
+            find . -name '*.ipynb' | pytest --nbmake --nbmake-timeout=3600;"
 
       - name: Export digest
         if: github.event_name != 'pull_request'
@@ -135,7 +135,7 @@ jobs:
 
       - name: Set up Docker Buildx
         id: buildx
-        uses: docker/setup-buildx-action@f87e5991a6d7451dcb8d9637bfbc97413f497069 # v4.4.1
+        uses: docker/setup-buildx-action@37fe631027851001ddb9b187196cc803df7f5f0e # v4.3.0
 
       - name: Metadata
         id: meta
